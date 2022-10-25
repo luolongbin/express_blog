@@ -1,0 +1,25 @@
+@url=http://localhost:3000/api
+
+
+# POST {{url}}/register
+# Content-Type: application/json
+
+# {
+#   "username": "wph",
+#   "password": "123456"
+# }
+
+# POST {{url}}/login
+# Content-Type: application/json
+
+# {
+#   "username": "yyy",
+#   "password": "yyy13456"
+# }
+
+get {{url}}/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNGY3MWZhMTU2MDRiZjdkNmVlOTc2NSIsInVzZXJuYW1lIjoieXl5IiwiaWF0IjoxNjY2MjMyMTM0fQ.NcnpkbY6JweWvJ-eDZS0X5lPDl1QI5FKBAeWpgf6CKQ
+
+
+
+
