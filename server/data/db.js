@@ -1,38 +1,15 @@
-// 引入 mongoose 
+// 引入mongoose
 const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
+const connectDB = async () => {
+    // 连接数据库，自动新建 express_admin 库
+    const conn = await mongoose.connect('mongodb://localhost:27017/express_admin', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    }).then(() => {
+        console.log("数据库连接成功");
+    }).catch((e) => {
+        console.log("数据库连接失败:" + e);
+    })
+}
 
-// 连接数据库，自动新建 express_admin 库
-mongoose.connect('mongodb://localhost:27017/express_admin', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-
-// 建立用户表
-const UserSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    unique: true
-  },
-  password: {
-    type: String,
-    // 设置 bcrypt 加密
-    set(val) {
-        return bcrypt.hashSync(val, 2)
-    }
-  }
-})
-
-// 建立用户数据库模型
-const User = mongoose.model('User', UserSchema)
-
-module.exports = { User }
-
-const conn = mongoose.connection;
-
-conn.on("error",error=>{
-    console.log("数据库连接失败:" + error);
-})
-conn.on("open",()=>{
-    console.log("数据库连接成功");
-})
+module.exports = connectDB;
