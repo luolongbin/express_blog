@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 
-const mongoose = require('mongoose')
-
 const schema = new mongoose.Schema({
     //标题
     title: { type: String },
