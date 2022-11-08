@@ -3,6 +3,7 @@ const app = express();
 const connectDB = require('./data/db');
 
 app.use(express.json()) // 设置后可以用 req.body 获取 POST 传入 data
+app.use(require('cors')()) // 解决跨域问题
 
 // middleware
 const resourceMiddleware = require('./middleware/resource')
