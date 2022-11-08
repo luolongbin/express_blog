@@ -27,8 +27,18 @@ router.post('/delete/:id', async (req, res) => {
 
 // 获取资源列表
 router.get('/', async (req, res) => {
-    const data = await req.Model.find({}, null, { limit: 100})
-    utils.responseClient(res, RES_CODE.reqSuccess, "获取文章成功", data)
+    req.Model.countDocuments({}, async (err, count) => {
+        if (err) {
+            return utils.severErr(err, res)
+        } else {
+            const model = await req.Model.find({}, null, { limit: 100 })
+            let data = {
+                count,
+                data: model
+            }
+            utils.responseClient(res, RES_CODE.reqSuccess, "获取文章成功", data)
+        }
+    })
 })
 
 // 资源详情
