@@ -1,6 +1,9 @@
 
 const express = require('express');
 const router = express.Router();
+const utils = require('../../config/utils')
+const { RES_CODE, HTTP_CODE } = require('../../config/constant');
+
 
 // 创建资源
 router.post('/', async (req, res) => {
@@ -24,8 +27,8 @@ router.post('/delete/:id', async (req, res) => {
 
 // 获取资源列表
 router.get('/', async (req, res) => {
-    const model = await req.Model.find({}, null, { limit: 100})
-    res.send(model)
+    const data = await req.Model.find({}, null, { limit: 100})
+    utils.responseClient(res, RES_CODE.reqSuccess, "获取文章成功", data)
 })
 
 // 资源详情
